@@ -9,30 +9,21 @@ document.querySelectorAll(".orbit-item").forEach(item => {
     });
 });
 
-// Création des bulles animées
-document.addEventListener("DOMContentLoaded", function() {
-    const background = document.querySelector(".background");
-
-    function createBubble() {
-        if (!background) return; // Sécurité si l'élément n'existe pas
-        const bubble = document.createElement("div");
+document.addEventListener("DOMContentLoaded", function () {
+    const bubbleContainer = document.createElement("div");
+    bubbleContainer.classList.add("bubbles-container");
+    
+    for (let i = 0; i < 10; i++) {
+        let bubble = document.createElement("span");
         bubble.classList.add("bubble");
-
-        // Positionnement et animation aléatoire
-        bubble.style.left = Math.random() * 100 + "vw";
-        bubble.style.width = Math.random() * 20 + 10 + "px";
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.animationDuration = `${10 + Math.random() * 5}s`;
+        bubble.style.width = `${20 + Math.random() * 40}px`;
         bubble.style.height = bubble.style.width;
-        bubble.style.animationDuration = Math.random() * 5 + 3 + "s";
-        
-        background.appendChild(bubble);
-
-        // Suppression après l'animation
-        setTimeout(() => {
-            bubble.remove();
-        }, 8000);
+        bubbleContainer.appendChild(bubble);
     }
-
-    setInterval(createBubble, 500);
+    
+    document.body.appendChild(bubbleContainer);
 });
 
 // Fonction pour remonter en haut de la page
