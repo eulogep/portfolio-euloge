@@ -65,3 +65,33 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     });
 });
+
+// 🌙 Fonction pour activer/désactiver le mode sombre
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
+}
+
+// Vérifier le mode sombre enregistré
+document.addEventListener("DOMContentLoaded", function() {
+    if (localStorage.getItem("dark-mode") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+});
+
+// Événement pour le bouton mode sombre
+document.querySelector(".dark-mode-toggle").addEventListener("click", toggleDarkMode);
+
+// ⌨️ Effet Machine à écrire
+document.addEventListener("DOMContentLoaded", function () {
+    const text = "Bienvenue sur mon Portfolio";
+    let index = 0;
+    function typeWriter() {
+        if (index < text.length) {
+            document.getElementById("typing-text").innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    typeWriter();
+});
